@@ -1,18 +1,17 @@
 const Sequelize = require("sequelize");
 
-/**
- * const DB-NAME = "",
- * const DB_USER = "",
- * const DB_PASS = "",
- * const DB_CONFIG = {
- *  host,
-    port,
-    dialect,
-    define: {
-      timestamps,
-    }
- * }
- */
+const DB_NAME = "desafio_final";
+const DB_USER = "root";
+const DB_PASS = "";
+const DB_CONFIG = {
+  host: "localhost",
+  port: 3306,
+  dialect: "mysql",
+  define: {
+    timestamps: false,
+  },
+};
+
 let db = {};
 
 try {
