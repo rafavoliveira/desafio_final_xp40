@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Controllers
+const usuarioController = require("../controllers/usuarioController")
 
 // Rotas - Categoria
 router.get("/categoria");
@@ -16,7 +17,7 @@ router.put("/produto/");
 router.delete("/produto/");
 
 // Rotas - Usuário
-router.get("/usuario");
+router.get("/usuario", usuarioController.listarUsuario);
 router.post("/usuario");
 router.put("/usuario");
 router.delete("/usuario");
