@@ -11,10 +11,12 @@ const categoria = db.define("categoria",{
     nomeCategoria:{
         type: DataTypes.STRING,
         field: "nome_categoria",
+        allowNull: false,
     },
     descricaoCategoria:{
         type: DataTypes.TEXT,
         field: "descricao_categoria",
+        allowNull: false,
     }
 },{
     tableName: "categoria",
