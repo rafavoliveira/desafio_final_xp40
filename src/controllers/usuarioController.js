@@ -1,4 +1,5 @@
 const usuarioModel = require("../models/usuarioModel");
+const bcrypt = require("bcryptjs");
 const usuarioController = {
   listarUsuario: async (req, res) => {
     try {
@@ -11,11 +12,12 @@ const usuarioController = {
 
   async cadastrarUsuario(req, res) {
     const { nomeUsuario, emailUsuario, senhaUsuario } = req.body;
+    const novaSenha = bcrypt.hashSync(senhaUsuario, 10);
 
     const novoUsuario = await usuarioModel.create({
       nomeUsuario,
       emailUsuario,
-      senhaUsuario,
+      senhaUsuario: novaSenha,
     });
 
     res.status(201).json(novoUsuario);

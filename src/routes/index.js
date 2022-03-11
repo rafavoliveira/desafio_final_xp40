@@ -11,7 +11,7 @@ const produtoController = require("../controllers/produtoController");
 router.get("/categoria", categoriaController.listarCategoria);
 router.post("/categoria", categoriaController.cadastrarCategoria);
 router.delete("/categoria/:idCategoria", categoriaController.deletarCategoria);
-router.put("/categoria/:idCategoria", categoriaController.atualizatCategoria);
+router.put("/categoria/:idCategoria", categoriaController.atualizarCategoria);
 
 // Rotas - Produto
 router.get("/produto", produtoController.listarProduto);
