@@ -21,10 +21,10 @@ const produto = db.define(
     },
     categoriaId: {
       type: DataTypes.INTEGER,
+      field: "categoria_id",
       references: {
         model: categoriaModel,
         key: "id",
-        field: "categoria_id",
       },
     },
   },
