@@ -4,12 +4,13 @@ const router = express.Router();
 
 // Controllers
 const usuarioController = require("../controllers/usuarioController");
+const categoriaController = require("../controllers/categoriaController");
 
 // Rotas - Categoria
-router.get("/categoria");
-router.post("/categoria");
-router.put("/categoria/");
-router.delete("/categoria/");
+router.get("/categoria", categoriaController.listarCategoria);
+router.post("/categoria", categoriaController.cadastrarCategoria);
+router.delete("/categoria/:idCategoria", categoriaController.deletarCategoria);
+router.put("/categoria/:idCategoria", categoriaController.atualizatCategoria);
 
 // Rotas - Produto
 router.get("/produto");
