@@ -13,17 +13,14 @@ const usuario = db.define(
     nomeUsuario: {
       type: DataTypes.STRING,
       field: "nome_usuario",
-      allowNull: false,
     },
     emailUsuario: {
       type: DataTypes.STRING,
       field: "email_usuario",
-      allowNull: false,
     },
     senhaUsuario: {
       type: DataTypes.STRING,
       field: "senha_usuario",
-      allowNull: false,
     },
   },
   { tableName: "usuario" }
