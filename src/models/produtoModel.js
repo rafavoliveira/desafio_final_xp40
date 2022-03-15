@@ -25,7 +25,6 @@ const produto = db.define(
       references: {
         model: categoriaModel,
         key: "id",
-        field: "categoria_id",
       },
     },
   },

@@ -24,6 +24,11 @@ const categoriaController = {
   async deletarCategoria(req, res) {
     try {
       const { idCategoria } = req.params;
+      const validaCategoria = await categoriaModel.findByPk(idCategoria);
+
+      if (!validaCategoria) {
+        return res.status(404).json("Essa categoria não existe");
+      }
       categoriaModel.destroy({
         where: {
           idCategoria,
@@ -38,6 +43,11 @@ const categoriaController = {
     try {
       const { idCategoria } = req.params;
       const { nomeCategoria, descricaoCategoria } = req.body;
+      const validaCategoria = await categoriaModel.findByPk(idCategoria);
+
+      if (!validaCategoria) {
+        return res.status(404).json("Essa categoria não existe");
+      }
       categoriaModel.update(
         {
           nomeCategoria,

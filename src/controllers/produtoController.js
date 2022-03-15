@@ -27,6 +27,11 @@ const produtoController = {
   async deletarProduto(req, res) {
     try {
       const { idProduto } = req.params;
+      const validaProduto = await produtoModel.findByPk(idProduto);
+
+      if (!validaProduto) {
+        return res.status(404).json("Esse produto não existe");
+      }
       produtoModel.destroy({
         where: {
           idProduto,
@@ -41,6 +46,13 @@ const produtoController = {
     try {
       const { idProduto } = req.params;
       const { nomeProduto, descricaoProduto, categoriaId } = req.body;
+
+      const validaProduto = await produtoModel.findByPk(idProduto);
+
+      if (!validaProduto) {
+        return res.status(404).json("Esse produto não existe");
+      }
+
       produtoModel.update(
         {
           nomeProduto,

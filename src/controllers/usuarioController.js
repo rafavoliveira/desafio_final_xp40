@@ -26,7 +26,10 @@ const usuarioController = {
   async deletarUsuario(req, res) {
     try {
       const { idUsuario } = req.params;
-
+      const validaUsuario = await usuarioModel.findByPk(idUsuario);
+      if (!validaUsuario) {
+        return res.status(404).json("Esse usuário não existe");
+      }
       await usuarioModel.destroy({
         where: {
           idUsuario,
@@ -42,8 +45,12 @@ const usuarioController = {
   async atualizarUsuario(req, res) {
     const { idUsuario } = req.params;
     const { nomeUsuario, emailUsuario, senhaUsuario } = req.body;
+    const validaUsuario = await usuarioModel.findByPk(idUsuario);
+    if (!validaUsuario) {
+      return res.status(404).json("Esse usuário não existe");
+    }
 
-    const usuarioAtualizado = await usuarioModel.update(
+    usuarioModel.update(
       {
         nomeUsuario,
         emailUsuario,
