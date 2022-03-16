@@ -1,5 +1,6 @@
 const usuarioModel = require("../models/usuarioModel");
 const bcrypt = require("bcryptjs");
+const { UniqueConstraintError } = require("sequelize");
 const usuarioController = {
   listarUsuario: async (req, res) => {
     try {
@@ -11,16 +12,22 @@ const usuarioController = {
   },
 
   async cadastrarUsuario(req, res) {
-    const { nomeUsuario, emailUsuario, senhaUsuario } = req.body;
-    const novaSenha = bcrypt.hashSync(senhaUsuario, 10);
+      try{
+        const { nomeUsuario, emailUsuario, senhaUsuario } = req.body;
+        const novaSenha = bcrypt.hashSync(senhaUsuario, 10);
 
-    const novoUsuario = await usuarioModel.create({
-      nomeUsuario,
-      emailUsuario,
-      senhaUsuario: novaSenha,
-    });
+        const novoUsuario = await usuarioModel.create({
+          nomeUsuario,
+          emailUsuario,
+          senhaUsuario: novaSenha,
+        });
 
-    res.status(201).json(novoUsuario);
+        res.status(201).json(novoUsuario);
+      }catch(error){
+        if(error instanceof UniqueConstraintError){
+          return res.json("Email já cadastrado!");
+        }
+      }
   },
 
   async deletarUsuario(req, res) {
@@ -43,27 +50,26 @@ const usuarioController = {
   },
 
   async atualizarUsuario(req, res) {
-    const { idUsuario } = req.params;
-    const { nomeUsuario, emailUsuario, senhaUsuario } = req.body;
-    const validaUsuario = await usuarioModel.findByPk(idUsuario);
-    if (!validaUsuario) {
-      return res.status(404).json("Esse usuário não existe");
-    }
-
-    usuarioModel.update(
-      {
-        nomeUsuario,
-        emailUsuario,
-        senhaUsuario,
-      },
-      {
-        where: {
-          idUsuario,
-        },
+      try{
+        const { idUsuario } = req.params;
+        const { nomeUsuario, emailUsuario, senhaUsuario } = req.body;
+        const validaUsuario = await usuarioModel.findByPk(idUsuario);
+        if (!validaUsuario) {
+          return res.status(404).json("Esse usuário não existe");
+        }
+        await usuarioModel.update({
+          nomeUsuario, emailUsuario, senhaUsuario
+        },{
+          where:{
+            idUsuario,
+          }
+        })
+        res.status(200).json("Usuário atualizado!");
+      }catch(error){
+        if(error instanceof UniqueConstraintError){
+          return res.json("Email já cadastrado!");
+        }
       }
-    );
-
-    res.json("Usuário atualizado com sucesso!");
   },
 };
 
