@@ -4,6 +4,7 @@ const router = express.Router();
 const usuarioController = require("../controllers/usuarioController");
 const categoriaController = require("../controllers/categoriaController");
 const produtoController = require("../controllers/produtoController");
+const autenticacaoController = require("../controllers/autenticacaoController");
 //validação
 const validaCadastroUsuario = require("../validations/usuario/cadastroUsuario");
 const validaCadastroProduto = require("../validations/produto/cadastroProduto");
@@ -38,5 +39,8 @@ router.post(
 );
 router.delete("/usuario/:idUsuario", usuarioController.deletarUsuario);
 router.put("/usuario/:idUsuario", usuarioController.atualizarUsuario);
+
+// Autenticação
+router.post("/login", autenticacaoController.login);
 
 module.exports = router;
