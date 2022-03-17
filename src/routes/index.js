@@ -12,6 +12,7 @@ const validaCadastroCategoria = require("../validations/categoria/cadastroCatego
 
 // Rotas - Categoria
 router.get("/categoria", categoriaController.listarCategoria);
+router.get("/categoria/:idCategoria", categoriaController.buscaCategoriaId);
 router.post(
   "/categoria",
   validaCadastroCategoria,
@@ -22,6 +23,7 @@ router.put("/categoria/:idCategoria", categoriaController.atualizarCategoria);
 
 // Rotas - Produto
 router.get("/produto", produtoController.listarProduto);
+router.get("/produto/:idProduto", produtoController.buscaProdutoId);
 router.post(
   "/produto",
   validaCadastroProduto,
@@ -32,6 +34,7 @@ router.delete("/produto/:idProduto", produtoController.deletarProduto);
 
 // Rotas - Usuário
 router.get("/usuario", usuarioController.listarUsuario);
+router.get("/usuario/:idUsuario", usuarioController.buscaUsuarioId);
 router.post(
   "/usuario",
   validaCadastroUsuario,

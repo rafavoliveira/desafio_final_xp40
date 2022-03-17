@@ -1,4 +1,5 @@
 const { categoriaModel, produtoModel } = require("../models");
+const produto = require("../models/produtoModel");
 
 const produtoController = {
   listarProduto: async (req, res) => {
@@ -11,6 +12,24 @@ const produtoController = {
       res.status(500).json(`${error}`);
     }
   },
+  async buscaProdutoId(req, res) {
+    try {
+      const { idProduto } = req.params;
+      const validaProduto = await produtoModel.findByPk(idProduto);
+
+      if (!validaProduto) {
+        return res.status(404).json("Esse produto não existe");
+      }
+
+      const buscaProduto = await produtoModel.findOne({
+        where: { idProduto },
+      });
+      res.status(200).json(buscaProduto);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+
   async cadastrarProduto(req, res) {
     try {
       const { nomeProduto, descricaoProduto, categoriaId } = req.body;

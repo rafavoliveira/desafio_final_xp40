@@ -9,6 +9,23 @@ const categoriaController = {
       res.status(500).json(`${error}`);
     }
   },
+  async buscaCategoriaId(req, res) {
+    try {
+      const { idCategoria } = req.params;
+      const validaCategoria = await categoriaModel.findByPk(idCategoria);
+
+      if (!validaCategoria) {
+        return res.status(404).json("Essa categoria não existe");
+      }
+
+      const buscaCategoria = await categoriaModel.findOne({
+        where: { idCategoria },
+      });
+      res.status(200).json(buscaCategoria);
+    } catch (error) {
+      res.status(500).json(`${error}`);
+    }
+  },
   async cadastrarCategoria(req, res) {
     try {
       const { nomeCategoria, descricaoCategoria } = req.body;
