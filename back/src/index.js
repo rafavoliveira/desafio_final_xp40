@@ -6,9 +6,11 @@ const routers = require("./routes");
 const handleError = require("./middlewares/handleError");
 
 app.use(express.json());
+app.use(cors({
+      origin: "http://localhost:3000",
+}))
 app.use(routers);
 db.hasConection();
-app.use(cors);
 app.use(handleError);
 
 app.listen(5000, () => {

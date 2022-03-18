@@ -10,6 +10,14 @@ const usuarioController = {
       res.status(500).json(`${error}`);
     }
   },
+  async usuario_atual (req, res){
+      try{
+          res.json(req.user);
+          console.log(req.user);
+      }catch(error){
+          res.status(500).json(`${error}`);
+      }
+  },
   async buscaUsuarioId(req, res) {
     try {
       const { idUsuario } = req.params;

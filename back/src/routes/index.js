@@ -52,6 +52,7 @@ router.delete(
 
 // Rotas - Usuário
 router.get("/usuario", usuarioController.listarUsuario);
+router.get("/usuario-logado", permissao, usuarioController.usuario_atual);
 router.get("/usuario/:idUsuario", usuarioController.buscaUsuarioId);
 router.post(
   "/usuario",

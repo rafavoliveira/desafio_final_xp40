@@ -5,26 +5,30 @@ const bcrypt = require("bcryptjs");
 
 const autenticacaoController = {
     async login(req, res){
-        const { emailUsuario, senhaUsuario } = req.body;
+        try{
+            const { emailUsuario, senhaUsuario } = req.body;
 
-        const Usuario = await usuarioModel.findOne({
-            where:{
-                emailUsuario,
-            },
-        });
+            const Usuario = await usuarioModel.findOne({
+                where:{
+                    emailUsuario,
+                },
+            });
 
-        if(!Usuario || !bcrypt.compareSync(senhaUsuario, Usuario.senhaUsuario)){
-            return res.status(400).json("Email ou senha incorreta!");
+            if(!Usuario || !bcrypt.compareSync(senhaUsuario, Usuario.senhaUsuario)){
+                return res.status(400).json("Email ou senha incorreta!");
+            }
+
+            const token = jwt.sign({
+                idUsuario: Usuario.idUsuario,
+                emailUsuario: Usuario.emailUsuario,
+                nomeUsuario: Usuario.nomeUsuario,
+                userType: "user",
+            }, secret.key)
+
+            return res.json(token);
+        }catch(error){
+            res.status(500).json("Por gentileza, tente novamente!");
         }
-
-        const token = jwt.sign({
-            idUsuario: Usuario.idUsuario,
-            emailUsuario: Usuario.emailUsuario,
-            nomeUsuario: Usuario.nomeUsuario,
-            userType: "user",
-        }, secret.key)
-
-        return res.json(token);
     }
 }
 
