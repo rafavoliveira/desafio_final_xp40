@@ -1,35 +1,26 @@
 import Rotas from "./Rotas";
-import React, { Component } from "react";
-import api from "./services/api";
-class App extends Component{
+import { useState, useEffect } from "react";
+import { UsuarioLogado } from "./services/api-rotas/api-rotas-usuario";
 
-  state = {
-      usuario: "",
-  }
+function App(){
 
-  componentDidMount = () => {
-      const config = {
-          headers:{
-              Authorization: `Bearer ` + localStorage.getItem("token")
-          }
-      }
+    const [usuarioLogado, setUsuarioLogado] = useState([]);
 
-      api.get("/usuario-logado", config)
-          .then(res => {
-                console.log(res.data);
-          })
-          .catch(error => {
-                console.log(error);
-          })
-  }
+    const getUsuarioLogado = async () => {
+        const response = await UsuarioLogado();
 
-  render(){
+        setUsuarioLogado(response);
+    }
+
+    useEffect(() =>{
+        getUsuarioLogado();
+    },[]);
+
     return(
-      <>
-        <Rotas/>
-      </>
+        <>
+          <Rotas/>
+        </>
     )
-  }
 }
 
 export default App;
