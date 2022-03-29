@@ -17,11 +17,11 @@ export function Header(){
 
     if(usuarioLogado == 401){
         return(
-            <h1>Header Cliente</h1>
+            <></>
         );
     }else{
         return(
-            <h1>Header - Administrativo</h1>
+            <>Header - Logado</>
         )
     }
 }
