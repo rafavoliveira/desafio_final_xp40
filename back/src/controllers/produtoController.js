@@ -32,8 +32,9 @@ const produtoController = {
 
   async cadastrarProduto(req, res) {
     try {
-      const { nomeProduto, descricaoProduto, categoriaId } = req.body;
+      const { fotoProduto, nomeProduto, descricaoProduto, categoriaId } = req.body;
       const novoProduto = await produtoModel.create({
+        fotoProduto,
         nomeProduto,
         descricaoProduto,
         categoriaId,
@@ -64,7 +65,7 @@ const produtoController = {
   async atualizarProduto(req, res) {
     try {
       const { idProduto } = req.params;
-      const { nomeProduto, descricaoProduto, categoriaId } = req.body;
+      const { fotoProduto, nomeProduto, descricaoProduto, categoriaId } = req.body;
 
       const validaProduto = await produtoModel.findByPk(idProduto);
 
@@ -74,6 +75,7 @@ const produtoController = {
 
       produtoModel.update(
         {
+          fotoProduto,
           nomeProduto,
           descricaoProduto,
           categoriaId,

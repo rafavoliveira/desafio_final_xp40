@@ -28,8 +28,9 @@ const categoriaController = {
   },
   async cadastrarCategoria(req, res) {
     try {
-      const { nomeCategoria, descricaoCategoria } = req.body;
+      const { fotoCategoria, nomeCategoria, descricaoCategoria } = req.body;
       const novaCategoria = await categoriaModel.create({
+        fotoCategoria,
         nomeCategoria,
         descricaoCategoria,
       });
@@ -59,7 +60,7 @@ const categoriaController = {
   async atualizarCategoria(req, res) {
     try {
       const { idCategoria } = req.params;
-      const { nomeCategoria, descricaoCategoria } = req.body;
+      const { fotoCategoria, nomeCategoria, descricaoCategoria } = req.body;
       const validaCategoria = await categoriaModel.findByPk(idCategoria);
 
       if (!validaCategoria) {
@@ -67,6 +68,7 @@ const categoriaController = {
       }
       categoriaModel.update(
         {
+          fotoCategoria,
           nomeCategoria,
           descricaoCategoria,
         },

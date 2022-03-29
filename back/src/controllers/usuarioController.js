@@ -37,10 +37,11 @@ const usuarioController = {
   },
   async cadastrarUsuario(req, res) {
     try {
-      const { nomeUsuario, emailUsuario, senhaUsuario } = req.body;
+      const { fotoUsuario, nomeUsuario, emailUsuario, senhaUsuario } = req.body;
       const novaSenha = bcrypt.hashSync(senhaUsuario, 10);
 
       const novoUsuario = await usuarioModel.create({
+        fotoUsuario,
         nomeUsuario,
         emailUsuario,
         senhaUsuario: novaSenha,
@@ -76,13 +77,14 @@ const usuarioController = {
   async atualizarUsuario(req, res) {
     try {
       const { idUsuario } = req.params;
-      const { nomeUsuario, emailUsuario, senhaUsuario } = req.body;
+      const { fotoUsuario,nomeUsuario, emailUsuario, senhaUsuario } = req.body;
       const validaUsuario = await usuarioModel.findByPk(idUsuario);
       if (!validaUsuario) {
         return res.status(404).json("Esse usuário não existe");
       }
       await usuarioModel.update(
         {
+          fotoUsuario,
           nomeUsuario,
           emailUsuario,
           senhaUsuario,
