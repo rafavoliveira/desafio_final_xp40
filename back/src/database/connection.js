@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 
 const DB_NAME = "desafio_final";
 const DB_USER = "root";
-const DB_PASS = "";
+const DB_PASS = "12345678";
 const DB_CONFIG = {
   host: "localhost",
   port: 3306,

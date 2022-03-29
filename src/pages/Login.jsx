@@ -1,91 +1,61 @@
-import React, { Component } from "react";
+import { useState } from "react";
 import api from "../services/api";
-class Login extends Component{
+import * as C from "../styles/GlobalStyle";
+import { useNavigate } from "react-router-dom";
 
-  constructor(){
-    super();
-    this.state = {
-      mensagem: "",
-    }
-  }
+function Login(){
 
-  handleSubmit = e => {
-    e.preventDefault();
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [mensagem, setMensagem] = useState("");
+    const navigate = useNavigate();
 
-    const data = {
-      emailUsuario: this.emailUsuario,
-      senhaUsuario: this.senhaUsuario,
+    const EnviarDadosEmail = (event) =>{
+        setEmail(event.target.value);
     }
 
-    console.log(data);
-
-    api.post("/login", data)
-        .then(res => {
-            localStorage.setItem("token", res.data);
-            console.log(res.data);
-
-            setTimeout(function(){
-                window.location.href = "/home";
-            }, 1000)
-        })
-        .catch(error => {
-          console.log(error.response.data);
-          this.setState({ mensagem: error.response.data });
-
-          setTimeout(function(){
-            window.location.href = "/login";
-          }, 1000)
-        })
-  }
-
-  render(){
-      return (
-        <main className="form-signin">
-          {
-            this.state.mensagem !== "" ? (
-                <div className="alert alert-danger">
-                    {this.state.mensagem}
-                </div>
-            ): ""
-          }
-          <form onSubmit={this.handleSubmit}>
-            <h1 className="h3 mb-3 fw-normal">Login</h1>
-    
-            <div className="form-floating">
-              <input
-                type="email"
-                className="form-control"
-                name="email_usuario"
-                id="email_usuario"
-                placeholder="name@example.com"
-                onChange={e => this.emailUsuario = e.target.value}
-              />
-              <label htmlFor="floatingInput">Email:</label>
-            </div>
-            <div className="form-floating">
-              <input
-                type="password"
-                className="form-control"
-                name="senha_usuario"
-                id="senha_usuario"
-                placeholder="Password"
-                onChange={e => this.senhaUsuario = e.target.value}
-              />
-              <label htmlFor="floatingPassword">Senha</label>
-            </div>
-    
-            <div className="checkbox mb-3">
-              <label>
-                <input type="checkbox" value="remember-me" /> Lembrar-me
-              </label>
-            </div>
-            <button type="submit" className="w-100 btn btn-lg btn-primary" type="submit">
-              Entrar
-            </button>
-          </form>
-        </main>
-      );
+    const EnviarDadosSenha = (event) => {
+        setSenha(event.target.value);
     }
-  }
+
+    const EnviarDados = (event) => {
+        const data = { emailUsuario: email, senhaUsuario: senha,}
+
+        api.post("/login", data)
+            .then(res => {
+                localStorage.setItem("token", res.data);
+                navigate("/home");
+            })
+            .catch(error => {
+                setMensagem(error.response.data);
+            })
+
+    }
+
+    return(
+          <C.LoginPagina>
+              <C.RegistroFormulario>
+                  {mensagem !== "" ? (
+                      <div className="alert alert-danger text-center">
+                          {mensagem} <i className="fa fa-warning"></i>
+                      </div>
+                  ): ""}
+                  <C.Formulario>
+                      <C.InputFormulario 
+                          type="email" placeholder="Digite seu email" 
+                          id="emailUsuario" name="emailUsuario" onChange={EnviarDadosEmail}
+                      />
+                      <C.InputFormulario 
+                          type="password" placeholder="Digite sua senha" 
+                          id="senhaUsuario" name="senhaUsuario" onChange={EnviarDadosSenha}
+                      />
+                      <C.BotaoFormulario type="submit" onClick={EnviarDados}>
+                          Entrar
+                      </C.BotaoFormulario>
+                  </C.Formulario>
+              </C.RegistroFormulario>
+          </C.LoginPagina>
+    )
+}
 
 export default Login;
