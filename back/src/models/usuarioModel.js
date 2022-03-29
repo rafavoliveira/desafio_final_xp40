@@ -10,6 +10,10 @@ const usuario = db.define(
       autoIncrement: true,
       field: "id_usuario",
     },
+    fotoUsuario:{
+      type: DataTypes.STRING,
+      field: "foto_usuario",
+    },
     nomeUsuario: {
       type: DataTypes.STRING,
       field: "nome_usuario",

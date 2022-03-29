@@ -8,6 +8,11 @@ const categoria = db.define("categoria",{
         primaryKey: true,
         field: "id_categoria",
     },
+    fotoCategoria:{
+        type: DataTypes.STRING,
+        field: "foto_categoria",
+        allowNull: false,
+    },
     nomeCategoria:{
         type: DataTypes.STRING,
         field: "nome_categoria",

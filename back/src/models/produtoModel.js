@@ -11,6 +11,10 @@ const produto = db.define(
       primaryKey: true,
       field: "id_produto",
     },
+    fotoProduto:{
+      type: DataTypes.STRING,
+      field: "foto_produto",
+    },
     nomeProduto: {
       type: DataTypes.STRING,
       field: "nome_produto",
