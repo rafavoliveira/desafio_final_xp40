@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Home from "./pages/adm";
@@ -16,48 +16,14 @@ function Rotas() {
   return (
     <>
       <BrowserRouter>
-        <Header/>
         <Routes>
-          <Route 
-              path="/login" 
-              element={
-                <RotaPrivadaLogin>
-                    <Login/>
-                </RotaPrivadaLogin>
-              } 
-          />
-          <Route 
-              path="/home" 
-              element={
-                <RotaPrivada>
-                    <Home/>
-                </RotaPrivada>
-              }
-          />
-          <Route
-              path="/usuario"
-              element={
-                <RotaPrivada>
-                    <Usuario/>
-                </RotaPrivada>
-              }
-          />
-          <Route
-              path="/categoria"
-              element={
-                <RotaPrivada>
-                    <Categoria/>
-                </RotaPrivada>
-              }
-          />
-          <Route
-              path="/produto"
-              element={
-                <RotaPrivada>
-                    <Produto/>
-                </RotaPrivada>
-              }
-          />
+          <Route path="/login" element={<RotaPrivadaLogin><Login/></RotaPrivadaLogin>}/>
+          <Route path="/" element={<Header/>}>
+          <Route path="/home" element={<RotaPrivada><Home/></RotaPrivada>}/>
+          <Route path="/usuario" element={<RotaPrivada><Usuario/></RotaPrivada>}/>
+          <Route path="/categoria" element={<RotaPrivada><Categoria/></RotaPrivada>}/>
+          <Route path="/produto" element={<RotaPrivada><Produto/></RotaPrivada>}/>
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

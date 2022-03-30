@@ -1,6 +1,7 @@
 import Rotas from "./Rotas";
 import { useState, useEffect } from "react";
 import { UsuarioLogado } from "./services/api-rotas/api-rotas-usuario";
+import { GlobalStyle } from "./styles/GlobalStyle";
 
 function App(){
 
@@ -18,6 +19,7 @@ function App(){
 
     return(
         <>
+          <GlobalStyle/>
           <Rotas/>
         </>
     )
