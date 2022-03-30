@@ -1,14 +1,12 @@
 import { useState } from "react";
 import api from "../services/api";
 import * as C from "../styles/GlobalStyle";
-import { useNavigate } from "react-router-dom";
 
 function Login(){
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [mensagem, setMensagem] = useState("");
-    const navigate = useNavigate();
 
     const EnviarDadosEmail = (event) =>{
         setEmail(event.target.value);
@@ -24,7 +22,9 @@ function Login(){
         api.post("/login", data)
             .then(res => {
                 localStorage.setItem("token", res.data);
-                navigate("/home");
+                setTimeout(function(){
+                    window.location.href = "/home";
+                }, 1000)
             })
             .catch(error => {
                 setMensagem(error.response.data);

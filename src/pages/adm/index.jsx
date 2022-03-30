@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Col, Row } from "reactstrap";
 
 function Home(){
     return(
         <>
-            <h1>Bem-vindo!</h1>
-            <Link to="/" onClick={() => window.location.reload(localStorage.clear())}>
-                Sair
-            </Link>
+            <h1>Home</h1>
         </>
     )
 }
