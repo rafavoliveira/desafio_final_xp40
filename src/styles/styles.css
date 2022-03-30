@@ -13,9 +13,24 @@ body {
 }
 
 .distanciamento{ 
-    padding-bottom: 308px; padding-right: 50px;
+    padding-bottom: 100vh; padding-right: 50px;
     font-size: 20px;
+}
+.distanciamento i{
+    margin-left: -20px;
+}
+.distanciamento li{
+  margin-left: 10px;
+}
+.distaciamento-card{
+    margin-top: 20px;
 }
 .display{
     display: flex;
+}
+table{
+    margin-right: 150px;
+}
+table button{
+  margin-left: 10px;
 }
