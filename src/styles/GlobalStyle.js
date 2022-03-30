@@ -1,4 +1,10 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
+    body{
+        margin: 0; padding: 0;
+    }
+`;
 
 export const LoginPagina = styled.div`
      width: 360px; padding: 8% 0 0; margin: auto;

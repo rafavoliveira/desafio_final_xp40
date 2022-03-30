@@ -8,4 +8,14 @@ body {
   padding-bottom: 40px;
   background-color: #f5f5f5;
 }
+.link-sidebar{
+    color: white;
+}
 
+.distanciamento{ 
+    padding-bottom: 308px; padding-right: 50px;
+    font-size: 20px;
+}
+.display{
+    display: flex;
+}
