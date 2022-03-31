@@ -1,10 +1,28 @@
+import { useState, useEffect } from "react";
 import * as C from "reactstrap";
-
-const Dados = [
-    { id: 1, nome: "mateus de sousa maciel", email: "mateus12345@gmail.com" },
-]
+import { VisualizarUsuario } from "../../services/api-rotas/api-rotas-usuario";
+import api from "../../services/api";
 
 export function TableUsuario(){
+
+    const [usuarios, setUsuarios] = useState([]);
+
+    const getVisualizarUsuarios = async () => {
+        const response = await VisualizarUsuario();
+
+        setUsuarios(response);
+    }
+
+    useEffect(() => {
+        getVisualizarUsuarios()
+    },[])
+
+    function deletarUsuario(id){
+        api.delete(`usuario/${id}`);
+
+        setUsuarios(usuarios.filter(usuario => usuario.idUsuario !== id));
+    }
+
     return(
         <div>
             <C.Card>
@@ -19,22 +37,29 @@ export function TableUsuario(){
                             <tr>
                                 <th>#</th>
                                 <th>Nome do Usuário</th>
+                                <th>Foto do Usuário</th>
                                 <th>Email do Usuário</th>
                                 <th>Configurações</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            {Dados.map((dados, index) => (
+                            {usuarios.map((dados, index) => (
                                 <tr key={index} className="border-top">
-                                    <td>00{dados.id}</td>
-                                    <td>{dados.nome}</td>
-                                    <td>{dados.email}</td>
+                                    <td>00{index + 1}</td>
+                                    <td>
+                                        <img src={dados.fotoUsuario}
+                                            className="rounded-circle"
+                                            width="80"
+                                        />
+                                    </td>
+                                    <td>{dados.nomeUsuario}</td>
+                                    <td>{dados.emailUsuario}</td>
                                     <td>
                                         <button className="btn btn-primary">
                                             <i className="fa fa-edit"></i>
                                         </button>
-                                        <button className="btn btn-danger">
+                                        <button className="btn btn-danger" onClick={() => deletarUsuario(dados.idUsuario)}>
                                             <i className="fa fa-trash"></i>
                                         </button>
                                         <button className="btn btn-secondary">

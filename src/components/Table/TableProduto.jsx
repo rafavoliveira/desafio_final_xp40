@@ -1,13 +1,28 @@
+import { useState, useEffect } from "react";
 import * as C from "reactstrap";
-
-const Dados = [
-    { id: 1, foto: "https://icones.pro/wp-content/uploads/2021/04/icone-noire-noir.png", nome: "Full Stack Devolper", categoria: "Hackers" },
-    { id: 2, foto: "https://icones.pro/wp-content/uploads/2021/04/icone-noire-noir.png", nome: "UX Designer", categoria: "Hipsters" },
-    { id: 3, foto: "https://icones.pro/wp-content/uploads/2021/04/icone-noire-noir.png", nome: "Vendas", categoria: "Hustlers" },
-    { id: 4, foto: "https://icones.pro/wp-content/uploads/2021/04/icone-noire-noir.png", nome: "Comércio", categoria: "Hypers" }
-]
+import { VisualizarProduto } from "../../services/api-rotas/api-rotas-produto";
+import api from "../../services/api";
 
 export function TableProduto(){
+
+    const [produtos, setProdutos] = useState([]);
+
+    const getVisualizarProdutos = async () => {
+        const response = await VisualizarProduto();
+
+        setProdutos(response);
+    }
+
+    useEffect(() => {
+        getVisualizarProdutos()
+    }, [])
+
+    function deletarProduto(id){
+        api.delete(`produto/${id}`);
+
+        setProdutos(produtos.filter(produto => produto.idProduto !== id));
+    }
+
     return(
         <div>
             <C.Card>
@@ -29,22 +44,21 @@ export function TableProduto(){
                         </thead>
 
                         <tbody>
-                            {Dados.map((dados, index) => (
+                            {produtos.map((dados, index) => (
                                 <tr key={index} className="border-top">
-                                    <td>00{dados.id}</td>
+                                    <td>00{index + 1}</td>
                                     <td>
-                                        <img src={dados.foto}
-                                            className="rounded-circle"
+                                        <img src={dados.fotoProduto}
                                             width="80"
                                         />
                                     </td>
-                                    <td>{dados.nome}</td>
-                                    <td>{dados.categoria}</td>
+                                    <td>{dados.nomeProduto}</td>
+                                    <td>{dados.categorium.nomeCategoria}</td>
                                     <td>
                                         <button className="btn btn-primary">
                                             <i className="fa fa-edit"></i>
                                         </button>
-                                        <button className="btn btn-danger">
+                                        <button className="btn btn-danger" onClick={() => deletarProduto(dados.idProduto)}>
                                             <i className="fa fa-trash"></i>
                                         </button>
                                         <button className="btn btn-secondary">

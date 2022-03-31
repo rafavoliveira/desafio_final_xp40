@@ -1,13 +1,29 @@
+import { useState, useEffect } from "react";
 import * as C from "reactstrap";
-
-const Dados = [
-    { id: 1, foto: "https://icones.pro/wp-content/uploads/2021/04/icone-noire-noir.png", nome: "Hackers" },
-    { id: 2, foto: "https://icones.pro/wp-content/uploads/2021/04/icone-noire-noir.png", nome: "Hipsters" },
-    { id: 3, foto: "https://icones.pro/wp-content/uploads/2021/04/icone-noire-noir.png", nome: "Hustlers" },
-    { id: 4, foto: "https://icones.pro/wp-content/uploads/2021/04/icone-noire-noir.png", nome: "Hypers" }
-]
+import { VisualizarCategoria } from "../../services/api-rotas/api-rotas-categoria";
+import api from "../../services/api";
 
 export function TableCategoria(){
+
+    const [categorias, setCategorias] = useState([]);
+
+    const getVisualizarCategorias = async () => {
+        const response = await VisualizarCategoria();
+        console.log(response);
+
+        setCategorias(response);
+    }
+
+    useEffect(() => {
+        getVisualizarCategorias()
+    },[])
+
+    function deletarCategoria(id){
+        api.delete(`categoria/${id}`);
+
+        setCategorias(categorias.filter(categoria => categoria.idCategoria !== id));
+    }
+
     return(
         <div>
             <C.Card>
@@ -28,21 +44,20 @@ export function TableCategoria(){
                         </thead>
 
                         <tbody>
-                            {Dados.map((dados, index) => (
+                            {categorias.map((dados, index) => (
                                 <tr key={index} className="border-top">
-                                    <td>00{dados.id}</td>
+                                    <td>00{index + 1}</td>
                                     <td>
-                                        <img src={dados.foto}
-                                            className="rounded-circle"
+                                        <img src={dados.fotoCategoria}
                                             width="80"
                                         />
                                     </td>
-                                    <td>{dados.nome}</td>
+                                    <td>{dados.nomeCategoria}</td>
                                     <td>
                                         <button className="btn btn-primary">
                                             <i className="fa fa-edit"></i>
                                         </button>
-                                        <button className="btn btn-danger">
+                                        <button className="btn btn-danger" onClick={() => deletarCategoria(dados.idCategoria)}>
                                             <i className="fa fa-trash"></i>
                                         </button>
                                         <button className="btn btn-secondary">
