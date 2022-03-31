@@ -13,6 +13,12 @@ export function Categoria(){
                     </C.BreadcrumbItem>
                     <C.BreadcrumbItem active>Categorias</C.BreadcrumbItem>
                 </C.Breadcrumb>
+                
+                <C.Breadcrumb>
+                    <C.BreadcrumbItem>
+                        <Link to="/cadastrar-categoria">Adicionar categoria</Link>
+                    </C.BreadcrumbItem>
+                </C.Breadcrumb>
             </C.CardBody>
 
             <C.Col lg="12">

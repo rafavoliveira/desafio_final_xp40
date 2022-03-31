@@ -13,6 +13,12 @@ export function Produto(){
                     </C.BreadcrumbItem>
                     <C.BreadcrumbItem active>Produtos</C.BreadcrumbItem>
                 </C.Breadcrumb>
+
+                <C.Breadcrumb>
+                    <C.BreadcrumbItem>
+                        <Link to="/cadastrar-produto">Adicionar produto</Link>
+                    </C.BreadcrumbItem>
+                </C.Breadcrumb>
             </C.CardBody>
 
             <C.Col lg="12">

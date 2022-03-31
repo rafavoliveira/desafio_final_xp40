@@ -13,6 +13,12 @@ export function Usuario(){
                     </C.BreadcrumbItem>
                     <C.BreadcrumbItem active>Usuários</C.BreadcrumbItem>
                 </C.Breadcrumb>
+
+                <C.Breadcrumb>
+                    <C.BreadcrumbItem>
+                        <Link to="/cadastrar-usuario">Adicionar usuário</Link>
+                    </C.BreadcrumbItem>
+                </C.Breadcrumb>
             </C.CardBody>
 
             <C.Col lg="12">
