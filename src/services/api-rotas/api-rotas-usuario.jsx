@@ -10,3 +10,13 @@ export const UsuarioLogado = async () => {
         return `${error.response.status}`;
     }
 }
+
+export const VisualizarUsuario = async () => {
+    try{
+        const response = await api.get("/usuario");
+
+        return response.data;
+    }catch(error){
+        return `${error.response.status}`;
+    }
+}
