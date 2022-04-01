@@ -13,6 +13,10 @@ import { PostagemUsuario } from "./pages/adm/usuario/PostagemUsuario";
 import { PostagemCategoria } from "./pages/adm/categoria/PostagemCategoria";
 import { PostagemProduto } from "./pages/adm/produto/PostagemProduto";
 
+import { VisualizarUsuario } from "./pages/adm/usuario/VisualizarUsuario";
+import { VisualizarCategoria } from "./pages/adm/categoria/VisualizarCategoria";
+import { VisualizarProduto } from "./pages/adm/produto/VisualizarProduto";
+
 import RotaPrivada from "./services/autenticacao";
 import RotaPrivadaLogin from "./services/protecao-login";
 
@@ -30,6 +34,9 @@ function Rotas() {
           <Route path="/cadastrar-usuario" element={<RotaPrivada><PostagemUsuario/></RotaPrivada>}/>
           <Route path="/cadastrar-categoria" element={<RotaPrivada><PostagemCategoria/></RotaPrivada>}/>
           <Route path="/cadastrar-produto" element={<RotaPrivada><PostagemProduto/></RotaPrivada>}/>
+          <Route path="/visualizar-usuario/:id" element={<RotaPrivada><VisualizarUsuario/></RotaPrivada>}/>
+          <Route path="/visualizar-categoria/:id" element={<RotaPrivada><VisualizarCategoria></VisualizarCategoria></RotaPrivada>}/>
+          <Route path="/visualizar-produto/:id" element={<RotaPrivada><VisualizarProduto/></RotaPrivada>}/>
           </Route>
         </Routes>
       </BrowserRouter>

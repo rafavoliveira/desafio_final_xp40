@@ -9,3 +9,14 @@ export const VisualizarProduto = async () => {
         return `${error.response.status}`;
     }
 }
+
+export const ProdutoSelecionado = async () =>{
+    try{
+        let id = window.location.pathname.split("/");
+        const response = await api.get(`/produto/${id[2]}`);
+
+        return response.data;
+    }catch(error){
+        return `${error.response}`;
+    }
+}
