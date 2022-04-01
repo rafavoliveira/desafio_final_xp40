@@ -9,7 +9,7 @@ const categoriaController = {
       res.status(500).json(`${error}`);
     }
   },
-  async buscaCategoriaId(req, res) {
+  buscaCategoriaId: async(req, res)=>{
     try {
       const { idCategoria } = req.params;
       const validaCategoria = await categoriaModel.findByPk(idCategoria);
@@ -18,10 +18,10 @@ const categoriaController = {
         return res.status(404).json("Essa categoria não existe");
       }
 
-      const buscaCategoria = await categoriaModel.findOne({
+      const buscaCategoria = await categoriaModel.findAll({
         where: { idCategoria },
       });
-      res.status(200).json(buscaCategoria);
+      res.json(buscaCategoria);
     } catch (error) {
       res.status(500).json(`${error}`);
     }

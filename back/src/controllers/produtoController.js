@@ -21,7 +21,8 @@ const produtoController = {
         return res.status(404).json("Esse produto não existe");
       }
 
-      const buscaProduto = await produtoModel.findOne({
+      const buscaProduto = await produtoModel.findAll({
+        include: categoriaModel,
         where: { idProduto },
       });
       res.status(200).json(buscaProduto);

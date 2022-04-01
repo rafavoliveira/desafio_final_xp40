@@ -27,7 +27,7 @@ const usuarioController = {
         return res.status(404).json("Esse usuário não existe");
       }
 
-      const buscaUsuario = await usuarioModel.findOne({
+      const buscaUsuario = await usuarioModel.findAll({
         where: { idUsuario },
       });
       res.status(200).json(buscaUsuario);
