@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import * as C from "reactstrap";
 import { VisualizarUsuario } from "../../services/api-rotas/api-rotas-usuario";
 import api from "../../services/api";
+import { Link } from "react-router-dom";
 
 export function TableUsuario(){
 
@@ -62,9 +63,11 @@ export function TableUsuario(){
                                         <button className="btn btn-danger" onClick={() => deletarUsuario(dados.idUsuario)}>
                                             <i className="fa fa-trash"></i>
                                         </button>
+                                        <Link to={{ pathname: `/visualizar-usuario/${dados.idUsuario}` }}>
                                         <button className="btn btn-secondary">
                                             <i className="fa fa-eye"></i>
                                         </button>
+                                        </Link>
                                     </td>
                                 </tr>
                             ))}

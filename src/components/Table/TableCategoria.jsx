@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import * as C from "reactstrap";
 import { VisualizarCategoria } from "../../services/api-rotas/api-rotas-categoria";
 import api from "../../services/api";
+import { Link } from "react-router-dom";
 
 export function TableCategoria(){
 
@@ -60,9 +61,12 @@ export function TableCategoria(){
                                         <button className="btn btn-danger" onClick={() => deletarCategoria(dados.idCategoria)}>
                                             <i className="fa fa-trash"></i>
                                         </button>
-                                        <button className="btn btn-secondary">
-                                            <i className="fa fa-eye"></i>
-                                        </button>
+
+                                        <Link to={{ pathname: `/visualizar-categoria/${dados.idCategoria}` }}>
+                                            <button className="btn btn-secondary">
+                                                <i className="fa fa-eye"></i>
+                                            </button>
+                                        </Link>
                                     </td>
                                 </tr>
                             ))}

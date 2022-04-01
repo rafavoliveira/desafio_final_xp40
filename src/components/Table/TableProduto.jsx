@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import * as C from "reactstrap";
 import { VisualizarProduto } from "../../services/api-rotas/api-rotas-produto";
 import api from "../../services/api";
+import { Link } from "react-router-dom";
 
 export function TableProduto(){
 
@@ -61,9 +62,11 @@ export function TableProduto(){
                                         <button className="btn btn-danger" onClick={() => deletarProduto(dados.idProduto)}>
                                             <i className="fa fa-trash"></i>
                                         </button>
-                                        <button className="btn btn-secondary">
-                                            <i className="fa fa-eye"></i>
-                                        </button>
+                                        <Link to={{ pathname: `/visualizar-produto/${dados.idProduto}` }}>
+                                            <button className="btn btn-secondary">
+                                                <i className="fa fa-eye"></i>
+                                            </button>
+                                        </Link>
                                     </td>
                                 </tr>
                             ))}
