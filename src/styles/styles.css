@@ -34,7 +34,7 @@ table{
 table button{
   margin-left: 10px;
 }
-label, button{
+label, button, p, img{
   margin-top: 15px;
 }
 .afastar{
