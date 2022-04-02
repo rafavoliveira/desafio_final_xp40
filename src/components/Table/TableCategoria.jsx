@@ -55,9 +55,11 @@ export function TableCategoria(){
                                     </td>
                                     <td>{dados.nomeCategoria}</td>
                                     <td>
-                                        <button className="btn btn-primary">
-                                            <i className="fa fa-edit"></i>
-                                        </button>
+                                        <Link to={{ pathname: `/atualizar-categoria/${dados.idCategoria}` }}>
+                                            <button className="btn btn-primary">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                        </Link>
                                         <button className="btn btn-danger" onClick={() => deletarCategoria(dados.idCategoria)}>
                                             <i className="fa fa-trash"></i>
                                         </button>

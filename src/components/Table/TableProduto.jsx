@@ -56,9 +56,11 @@ export function TableProduto(){
                                     <td>{dados.nomeProduto}</td>
                                     <td>{dados.categorium.nomeCategoria}</td>
                                     <td>
-                                        <button className="btn btn-primary">
-                                            <i className="fa fa-edit"></i>
-                                        </button>
+                                        <Link to={{ pathname: `/atualizar-produto/${dados.idProduto}` }}>
+                                            <button className="btn btn-primary">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                        </Link>
                                         <button className="btn btn-danger" onClick={() => deletarProduto(dados.idProduto)}>
                                             <i className="fa fa-trash"></i>
                                         </button>

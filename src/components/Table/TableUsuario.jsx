@@ -57,9 +57,11 @@ export function TableUsuario(){
                                     <td>{dados.nomeUsuario}</td>
                                     <td>{dados.emailUsuario}</td>
                                     <td>
+                                        <Link to={{ pathname: `/atualizar-usuario/${dados.idUsuario}` }}>
                                         <button className="btn btn-primary">
                                             <i className="fa fa-edit"></i>
                                         </button>
+                                        </Link>
                                         <button className="btn btn-danger" onClick={() => deletarUsuario(dados.idUsuario)}>
                                             <i className="fa fa-trash"></i>
                                         </button>
