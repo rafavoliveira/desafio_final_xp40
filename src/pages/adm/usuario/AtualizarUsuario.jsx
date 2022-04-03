@@ -10,8 +10,19 @@ export function AtualizarUsuario(){
 
     const [usuario, setUsuario] = useState([]);
 
+    const [fotoUsuario, setFotoUsuario] = useState("");
+    const [nomeUsuario, setNomeUsuario] = useState("");
+    const [emailUsuario, setEmailUsuario] = useState("");
+    const [senhaUsuario, setSenhaUsuario] = useState("");
+    const [mensagem, setMensagem] = useState("");
+
     const getUsuarioSelecionado = async () => {
         const response = await UsuarioSelecionado();
+
+        setFotoUsuario(response[0].fotoUsuario);
+        setNomeUsuario(response[0].nomeUsuario);
+        setEmailUsuario(response[0].emailUsuario);
+        setSenhaUsuario(response[0].senhaUsuario);
 
         setUsuario(response);
     }
@@ -19,12 +30,6 @@ export function AtualizarUsuario(){
     useEffect(() =>{
         getUsuarioSelecionado()
     },[]);
-
-    const [fotoUsuario, setFotoUsuario] = useState("");
-    const [nomeUsuario, setNomeUsuario] = useState("");
-    const [emailUsuario, setEmailUsuario] = useState("");
-    const [senhaUsuario, setSenhaUsuario] = useState("");
-    const [mensagem, setMensagem] = useState("");
 
     const AtualizarFotoUsuario = (event) => {
         setFotoUsuario(event.target.value);
@@ -70,6 +75,7 @@ export function AtualizarUsuario(){
                             <C.Input type="url" name="fotoUsuario" id="fotoUsuario"
                                 placeholder="Atualize a url da imagem"
                                 onChange={AtualizarFotoUsuario}
+                                value={fotoUsuario}
                             />
                         </C.Col>
                         <C.Col lg="6">
@@ -77,6 +83,7 @@ export function AtualizarUsuario(){
                             <C.Input type="text" name="nomeUsuario" id="nomeUsuario"
                                 placeholder="Atualize o nome do usuário"
                                 onChange={AtualizarNomeUsuario}
+                                value={nomeUsuario}
                             />
                         </C.Col>
                         <C.Col lg="6">
@@ -84,6 +91,7 @@ export function AtualizarUsuario(){
                             <C.Input type="email" name="emailUsuario" id="emailUsuario"
                                 placeholder="Atualize o email do usuário"
                                 onChange={AtualizarEmailUsuario}
+                                value={emailUsuario}
                             />
                         </C.Col>
                         <C.Col lg="6">
@@ -91,6 +99,7 @@ export function AtualizarUsuario(){
                             <C.Input type="password" name="senhaUsuario"
                                 id="senhaUsuario" placeholder="Atualize a senha do usuário"
                                 onChange={AtualizarSenhaUsuario}
+                                value={senhaUsuario}
                             />
                         </C.Col>
                         <C.Col lg="4">

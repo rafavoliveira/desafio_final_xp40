@@ -18,6 +18,10 @@ export function AtualizarCategoria(){
     const getCategoriaSelecionada = async () =>{
         const response = await CategoriaSelecionada();
 
+        setFotoCategoria(response[0].fotoCategoria);
+        setNomeCategoria(response[0].nomeCategoria);
+        setDescricaoCategoria(response[0].descricaoCategoria);
+
         setCategoria(response);
     }
 
@@ -65,6 +69,7 @@ export function AtualizarCategoria(){
                             <C.Label>Imagem da categoria</C.Label>
                             <C.Input type="url" name="fotoCategoria" id="fotoCategoria"
                                 placeholder="Atualize a imagem da categoria"
+                                value={fotoCategoria}
                                 onChange={AtualizarFotoCategoria}
                             />
                         </C.Col>
@@ -72,6 +77,7 @@ export function AtualizarCategoria(){
                             <C.Label>Título da categoria</C.Label>
                             <C.Input type="text" name="nomeCategoria" id="nomeCategoria"
                                 placeholder="Atualize o título da categoria"
+                                value={nomeCategoria}
                                 onChange={AtualizarNomeCategoria}
                             />
                         </C.Col>
@@ -80,6 +86,7 @@ export function AtualizarCategoria(){
                             <C.Input type="textarea" name="descricaoCategoria"
                                 id="descricaoCategoria" rows="4"
                                 placeholder="Atualize a descrição da categoria"
+                                value={descricaoCategoria}
                                 onChange={AtualizarDescricaoCategoria}
                             />
                         </C.Col>

@@ -12,8 +12,21 @@ export function AtualizarProduto(){
     const [produto, setProduto] = useState([]);
     const [categoria, setCategoria] = useState([]);
 
+    const [fotoProduto, setFotoProduto] = useState("");
+    const [nomeProduto, setNomeProduto] = useState("");
+    const [categoriaProduto, setCategoriaProduto] = useState("");
+    const [categoriaProdutoId, setCategoriaProdutoId] = useState("");
+    const [descricaoProduto, setDescricaoProduto] = useState("");
+    const [mensagem, setMensagem] = useState("");
+
     const getProdutoSelecionado = async () => {
         const response = await ProdutoSelecionado();
+
+        setFotoProduto(response[0].fotoProduto);
+        setNomeProduto(response[0].nomeProduto);
+        setCategoriaProduto(response[0].categorium.nomeCategoria);
+        setCategoriaProdutoId(response[0].categoriaId);
+        setDescricaoProduto(response[0].descricaoProduto);
 
         setProduto(response);
     }
@@ -28,12 +41,6 @@ export function AtualizarProduto(){
         getProdutoSelecionado();
         getCategorias();
     },[])
-
-    const [fotoProduto, setFotoProduto] = useState("");
-    const [nomeProduto, setNomeProduto] = useState("");
-    const [categoriaProduto, setCategoriaProduto] = useState("");
-    const [descricaoProduto, setDescricaoProduto] = useState("");
-    const [mensagem, setMensagem] = useState("");
 
     const AtualizarFotoProduto = (event) =>{
         setFotoProduto(event.target.value);
@@ -78,6 +85,7 @@ export function AtualizarProduto(){
                             <C.Input type="url" name="fotoProduto" id="fotoProduto"
                                 placeholder="Atualize a url da imagem"
                                 onChange={AtualizarFotoProduto}
+                                value={fotoProduto}
                             />
                         </C.Col>
                         <C.Col lg="4">
@@ -85,16 +93,20 @@ export function AtualizarProduto(){
                             <C.Input type="text" name="nomeProduto" id="nomeProduto"
                                 placeholder="Atualize o título do seu produto"
                                 onChange={AtualizarNomeProduto}
+                                value={nomeProduto}
                             />
                         </C.Col>
                         <C.Col lg="4">
                             <C.Label>Selecione a categoria</C.Label>
                             <C.Input type="select" name="categoriaId" id="categoriaId" 
-                                onChange={AtualizarCategoriaProduto}>
+                                onChange={AtualizarCategoriaProduto} value={categoriaProduto}>
+                                    <option value={categoriaProdutoId}>{categoriaProduto}</option>
                                 {categoria.map((dado, index) => (
-                                    <option value={dado.idCategoria} key={index}>
-                                        {dado.nomeCategoria}
-                                    </option>
+                                    dado.idCategoria !== categoriaProdutoId ? (
+                                        <option value={dado.idCategoria} key={index}>
+                                            {dado.nomeCategoria}
+                                        </option>
+                                    ): ""
                                 ))}
                             </C.Input>
                         </C.Col>
@@ -104,6 +116,7 @@ export function AtualizarProduto(){
                                 id="descricaoProduto" 
                                 placeholder="Atualize a descrição da categoria"
                                 rows="4" onChange={AtualizarDescricaoProduto}
+                                value={descricaoProduto}
                             />
                         </C.Col>
                         <C.Col lg="4">
