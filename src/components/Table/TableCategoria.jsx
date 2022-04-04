@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 export function TableCategoria(){
 
     const [categorias, setCategorias] = useState([]);
+    const [erro, setErro] = useState("");
 
     const getVisualizarCategorias = async () => {
         const response = await VisualizarCategoria();
@@ -20,7 +21,16 @@ export function TableCategoria(){
     },[])
 
     function deletarCategoria(id){
-        api.delete(`categoria/${id}`);
+        api.delete(`categoria/${id}`)
+            .catch(error => {
+                if(error.response.data == "SequelizeForeignKeyConstraintError"){
+                    setErro("Não é possível remover essa categoria!");
+                }
+
+                setTimeout(function(){
+                    window.location.href = "/categoria";
+                },1000)
+            })
 
         setCategorias(categorias.filter(categoria => categoria.idCategoria !== id));
     }
@@ -33,6 +43,10 @@ export function TableCategoria(){
                     <C.CardSubtitle className="mb-2 text-muted" tag="h6">
                         Categorias do sistema
                     </C.CardSubtitle>
+
+                    {erro !== "" ? (
+                        <C.Alert color="danger">{erro}</C.Alert>
+                    ): ""}
 
                     <C.Table className="no-wrap mt-3 align-middle text-center" responsive borderless>
                         <thead>

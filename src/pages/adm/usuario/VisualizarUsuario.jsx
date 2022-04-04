@@ -21,7 +21,7 @@ export function VisualizarUsuario(){
     return(
         <C.Row>
             {usuario.map((dados, index) => (
-            <C.Card>
+            <C.Card key={index}>
                 <C.CardTitle tag="h6" className="border-bottom p-3 mb-0">
                     Usuário - {dados.nomeUsuario}
                 </C.CardTitle>

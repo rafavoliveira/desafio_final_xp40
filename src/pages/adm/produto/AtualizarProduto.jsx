@@ -151,10 +151,10 @@ export function AtualizarProduto(){
                         />
                     </C.Col>
                         <C.Col lg="12">
-                            <C.Label>Descrição da categoria</C.Label>
+                            <C.Label>Descrição do produto</C.Label>
                             <C.Input type="textarea" name="descricaoProduto"
                                 id="descricaoProduto" 
-                                placeholder="Atualize a descrição da categoria"
+                                placeholder="Atualize a descrição do produto"
                                 rows="4" onChange={AtualizarDescricaoProduto}
                                 value={descricaoProduto}
                             />

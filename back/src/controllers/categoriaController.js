@@ -53,7 +53,7 @@ const categoriaController = {
               return res.status(404).json("Essa categoria não existe");
             }
 
-            categoriaModel.destroy({
+            await categoriaModel.destroy({
                 where: {
                     idCategoria,
                 },
@@ -61,7 +61,7 @@ const categoriaController = {
 
             res.status(200).json("A categoria foi removida com sucesso!");
         }catch(error){
-            res.status(500).json("Ocorreu algum erro!");
+            res.status(500).json(error.name);
         }
   },
   async atualizarCategoria(req, res) {
@@ -74,7 +74,7 @@ const categoriaController = {
               return res.status(404).json("Essa categoria não existe");
             }
 
-            categoriaModel.update({
+            await categoriaModel.update({
                 fotoCategoria, nomeCategoria, descricaoCategoria,
             },{
                 where:{

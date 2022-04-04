@@ -122,7 +122,7 @@ export function PostagemProduto(){
                         />
                     </C.Col>
                     <C.Col lg="12">
-                        <C.Label>Descrição da categoria</C.Label>
+                        <C.Label>Descrição do produto</C.Label>
                         <C.Input type="textarea" name="descricaoProduto" id="descricaoProduto" placeholder="Descreva o que será visualizado pelo cliente sobre o produto" rows="4"
                         onChange={EnviarDescricaoProduto}
                         />

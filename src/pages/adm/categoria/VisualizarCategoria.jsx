@@ -19,7 +19,7 @@ export function VisualizarCategoria(){
     return(
         <C.Row>
             {categoria.map((dados, index) => (
-            <C.Card>
+            <C.Card key={index}>
                 <C.CardTitle tag="h6" className="border-bottom p-3 mb-0">
                     Categoria - {dados.nomeCategoria}
                 </C.CardTitle>
