@@ -19,7 +19,7 @@ function Home(){
                 {CardsHome.map((card, index) => (
                 <C.Col md="6" lg="4" key={index}>
                     <C.Card className="distaciamento-card" body>
-                        <C.CardImg src={card.logo}/>
+                        <img src={card.logo} width="200"/>
                         <C.CardTitle tag="h5">{card.titulo}</C.CardTitle>
                         <C.CardText>{card.texto}</C.CardText>
                         <div>

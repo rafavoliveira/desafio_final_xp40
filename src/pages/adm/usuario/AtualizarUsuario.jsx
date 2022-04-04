@@ -13,7 +13,6 @@ export function AtualizarUsuario(){
     const [fotoUsuario, setFotoUsuario] = useState("");
     const [nomeUsuario, setNomeUsuario] = useState("");
     const [emailUsuario, setEmailUsuario] = useState("");
-    const [senhaUsuario, setSenhaUsuario] = useState("");
     const [mensagem, setMensagem] = useState("");
 
     const getUsuarioSelecionado = async () => {
@@ -22,7 +21,6 @@ export function AtualizarUsuario(){
         setFotoUsuario(response[0].fotoUsuario);
         setNomeUsuario(response[0].nomeUsuario);
         setEmailUsuario(response[0].emailUsuario);
-        setSenhaUsuario(response[0].senhaUsuario);
 
         setUsuario(response);
     }
@@ -40,17 +38,18 @@ export function AtualizarUsuario(){
     const AtualizarEmailUsuario = (event) => {
         setEmailUsuario(event.target.value);
     }
-    const AtualizarSenhaUsuario = (event) => {
-        setSenhaUsuario(event.target.value);
-    }
 
     const EnviarDados = async () => {
         const data = {
             fotoUsuario: fotoUsuario, nomeUsuario: nomeUsuario,
-            emailUsuario: emailUsuario, senhaUsuario: senhaUsuario,
+            emailUsuario: emailUsuario,
         }
         try{
             const response = await api.put("/usuario/"+id, data);
+
+            setTimeout(function(){
+                window.location.href = "/usuario";
+            },2000)
 
             setMensagem("Usuário atualizado com sucesso!");
 
@@ -94,14 +93,7 @@ export function AtualizarUsuario(){
                                 value={emailUsuario}
                             />
                         </C.Col>
-                        <C.Col lg="6">
-                            <C.Label>Senha do usuário</C.Label>
-                            <C.Input type="password" name="senhaUsuario"
-                                id="senhaUsuario" placeholder="Atualize a senha do usuário"
-                                onChange={AtualizarSenhaUsuario}
-                                value={senhaUsuario}
-                            />
-                        </C.Col>
+                        <C.Col lg="6"/>
                         <C.Col lg="4">
                             <C.Button color="primary" onClick={EnviarDados}>
                                 Atualizar usuário

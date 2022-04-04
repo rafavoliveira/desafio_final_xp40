@@ -63,9 +63,13 @@ export function AtualizarProduto(){
         try{
             const response = await api.put("/produto/"+id, data);
 
+            setTimeout(function(){
+                window.location.href = "/produto";
+            },2000)
+
             setMensagem("Produto atualizado com sucesso!");
         }catch(error){
-            setMensagem("Ocorreu um erro ao tentar atualizar o usuário!")
+            setMensagem("Ocorreu um erro ao tentar atualizar o produto!")
         }
     }
 

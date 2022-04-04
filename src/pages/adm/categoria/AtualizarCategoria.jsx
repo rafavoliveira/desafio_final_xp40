@@ -44,9 +44,13 @@ export function AtualizarCategoria(){
         try{
             const response = await api.put("/categoria/"+id, data);
 
+            setTimeout(function(){
+                window.location.href = "/categoria";
+            }, 2000)
+
             setMensagem("Categoria atualizada com sucesso!");
         }catch(error){
-            return error.response;
+            setMensagem("Ocorreu um erro ao tentar atualizar a categoria");
         }
     }
 
