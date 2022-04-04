@@ -5,6 +5,9 @@ module.exports = validate({
     fotoProduto: Joi.string().required(),
     nomeProduto: Joi.string().required(),
     descricaoProduto: Joi.string().required(),
+    cargaHorariaProduto: Joi.number().required(),
+    diasSemanaProduto: Joi.string().required(),
+    dataSemanaProduto: Joi.string().required(),
     categoriaId: Joi.number().required(),
   }),
 });

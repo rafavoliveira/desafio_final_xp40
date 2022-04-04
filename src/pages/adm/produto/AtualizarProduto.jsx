@@ -15,8 +15,11 @@ export function AtualizarProduto(){
     const [fotoProduto, setFotoProduto] = useState("");
     const [nomeProduto, setNomeProduto] = useState("");
     const [categoriaProduto, setCategoriaProduto] = useState("");
-    const [categoriaProdutoId, setCategoriaProdutoId] = useState("");
     const [descricaoProduto, setDescricaoProduto] = useState("");
+    const [cargaHorariaProduto, setCargaHoraria] = useState("");
+    const [diasSemanaProduto, setDiaSemana] = useState("");
+    const [dataSemanaProduto, setDataSemana] = useState("");
+    const [categoriaProdutoId, setCategoriaProdutoId] = useState("");
     const [mensagem, setMensagem] = useState("");
 
     const getProdutoSelecionado = async () => {
@@ -27,6 +30,9 @@ export function AtualizarProduto(){
         setCategoriaProduto(response[0].categorium.nomeCategoria);
         setCategoriaProdutoId(response[0].categoriaId);
         setDescricaoProduto(response[0].descricaoProduto);
+        setCargaHoraria(response[0].cargaHorariaProduto);
+        setDiaSemana(response[0].diasSemanaProduto);
+        setDataSemana(response[0].dataSemanaProduto);
 
         setProduto(response);
     }
@@ -55,10 +61,16 @@ export function AtualizarProduto(){
         setDescricaoProduto(event.target.value);
     }
 
+    const AtualizarCargaHoraria = (event) => {setCargaHoraria(event.target.value)}
+    const AtualizarDiaSemana = (event) => {setDiaSemana(event.target.value)}
+    const AtualizarDataSemana = (event) => {setDataSemana(event.target.value)}
+
     const EnviarDados = async () =>{
         const data = {
             fotoProduto: fotoProduto, nomeProduto: nomeProduto,
-            descricaoProduto: descricaoProduto, categoriaId: categoriaProduto,
+            descricaoProduto: descricaoProduto, cargaHorariaProduto: cargaHorariaProduto,
+            diasSemanaProduto: diasSemanaProduto, dataSemanaProduto: dataSemanaProduto,
+            categoriaId: categoriaProdutoId,
         }
         try{
             const response = await api.put("/produto/"+id, data);
@@ -103,7 +115,7 @@ export function AtualizarProduto(){
                         <C.Col lg="4">
                             <C.Label>Selecione a categoria</C.Label>
                             <C.Input type="select" name="categoriaId" id="categoriaId" 
-                                onChange={AtualizarCategoriaProduto} value={categoriaProduto}>
+                                onChange={AtualizarCategoriaProduto} value={categoriaProdutoId}>
                                     <option value={categoriaProdutoId}>{categoriaProduto}</option>
                                 {categoria.map((dado, index) => (
                                     dado.idCategoria !== categoriaProdutoId ? (
@@ -114,6 +126,30 @@ export function AtualizarProduto(){
                                 ))}
                             </C.Input>
                         </C.Col>
+                        <C.Col lg="4">
+                        <C.Label>Carga horário do produto</C.Label>
+                        <C.Input type="number" name="cargaHorariaProduto" id="cargaHorariaProduto"
+                            placeholder="Atualize a carga horário do produto"
+                            value={cargaHorariaProduto}
+                            onChange={AtualizarCargaHoraria}
+                        />
+                    </C.Col>
+                    <C.Col lg="4">
+                        <C.Label>Dias da semana do produto</C.Label>
+                        <C.Input type="text" name="diasSemanaProduto" id="diasSemanaProduto"
+                            placeholder="Atualize os dias da semana do produto"
+                            value={diasSemanaProduto}
+                            onChange={AtualizarDiaSemana}
+                        />
+                    </C.Col>
+                    <C.Col lg="4">
+                        <C.Label>Datas da semana do produto</C.Label>
+                        <C.Input type="text" name="dataSemanaProduto" id="dataSemanaProduto"
+                            placeholder="Atualize as data da semana do produto"
+                            value={dataSemanaProduto}
+                            onChange={AtualizarDataSemana}
+                        />
+                    </C.Col>
                         <C.Col lg="12">
                             <C.Label>Descrição da categoria</C.Label>
                             <C.Input type="textarea" name="descricaoProduto"

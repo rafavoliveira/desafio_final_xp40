@@ -36,15 +36,15 @@ const produtoController = {
 
     async cadastrarProduto(req, res) {
       try{
-          const { fotoProduto, nomeProduto, descricaoProduto, categoriaId } = req.body;
+          const { fotoProduto, nomeProduto, descricaoProduto, cargaHorariaProduto, diasSemanaProduto, dataSemanaProduto, categoriaId } = req.body;
 
           const novoProduto = await produtoModel.create({
-            fotoProduto, nomeProduto, descricaoProduto, categoriaId,
+            fotoProduto, nomeProduto, descricaoProduto, cargaHorariaProduto, diasSemanaProduto, dataSemanaProduto, categoriaId,
           });
 
           res.status(201).json(novoProduto);
       }catch(error){
-          res.status(500).json("Ocorreu algum erro!");
+          res.status(500).json("Ocorreu algum erro!" + error);
       }
     },
     async deletarProduto(req, res) {
@@ -69,7 +69,8 @@ const produtoController = {
     async atualizarProduto(req, res) {
         try {
             const { idProduto } = req.params;
-            const { fotoProduto, nomeProduto, descricaoProduto, categoriaId } = req.body;
+            const { fotoProduto, nomeProduto, descricaoProduto,
+                cargaHorariaProduto, diasSemanaProduto, dataSemanaProduto, categoriaId } = req.body;
 
             const validaProduto = await produtoModel.findByPk(idProduto);
 
@@ -78,7 +79,7 @@ const produtoController = {
             }
 
             produtoModel.update({
-                fotoProduto, nomeProduto, descricaoProduto,
+                fotoProduto, nomeProduto, descricaoProduto, cargaHorariaProduto, diasSemanaProduto, dataSemanaProduto, categoriaId,
             },{
                 where:{
                     idProduto,
@@ -86,7 +87,7 @@ const produtoController = {
             });
             res.status(200).json("Produto atualizado com sucesso!");
         }catch(error){
-            res.status(500).json("Ocorreu algum erro!");
+            res.status(500).json("Ocorreu algum erro!" + error);
         }
     },
 };

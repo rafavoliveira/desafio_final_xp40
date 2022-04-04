@@ -12,7 +12,9 @@ export function PostagemProduto(){
     const [nomeProduto, setNomeProduto] = useState("");
     const [descricaoProduto, setDescricaoProduto] = useState("");
     const [categoriaId, setCategoriaId] = useState("");
-
+    const [cargaHorariaProduto, setCargaHoraria] = useState("");
+    const [diasSemanaProduto, setDiaSemana] = useState("");
+    const [dataSemanaProduto, setDataSemana] = useState("");
     const [mensagem, setMensagem] = useState("");
 
     const EnviarImagemProduto = (event) => {
@@ -27,11 +29,16 @@ export function PostagemProduto(){
     const EnviarCategoriaId = (event) => {
         setCategoriaId(event.target.value);
     }
+    const EnviarCargaHoraria = (event) => {setCargaHoraria(event.target.value)}
+    const EnviarDiasSemana = (event) => {setDiaSemana(event.target.value)}
+    const EnviarDataSemana = (event) => {setDataSemana(event.target.value)}
 
     const EnviarDados = () => {
         const data = {
             fotoProduto: imagemProduto, nomeProduto: nomeProduto, 
-            descricaoProduto: descricaoProduto, categoriaId: categoriaId
+            descricaoProduto: descricaoProduto, cargaHorariaProduto: cargaHorariaProduto,
+            diasSemanaProduto: diasSemanaProduto, dataSemanaProduto: dataSemanaProduto,
+            categoriaId: categoriaId
         }
         console.log(data);
         api.post("/produto", data)
@@ -92,6 +99,27 @@ export function PostagemProduto(){
                                 <option value="">Não existe categorias adicionadas!</option>
                             )}
                         </C.Input>
+                    </C.Col>
+                    <C.Col lg="4">
+                        <C.Label>Carga horário do produto</C.Label>
+                        <C.Input type="number" name="cargaHorariaProduto" id="cargaHorariaProduto"
+                            placeholder="Digite a carga horário do produto"
+                            onChange={EnviarCargaHoraria}
+                        />
+                    </C.Col>
+                    <C.Col lg="4">
+                        <C.Label>Dias da semana do produto</C.Label>
+                        <C.Input type="text" name="diasSemanaProduto" id="diasSemanaProduto"
+                            placeholder="Digite os dias da semana do produto"
+                            onChange={EnviarDiasSemana}
+                        />
+                    </C.Col>
+                    <C.Col lg="4">
+                        <C.Label>Datas da semana do produto</C.Label>
+                        <C.Input type="txt" name="dataSemanaProduto" id="dataSemanaProduto"
+                            placeholder="Digite as data da semana do produto"
+                            onChange={EnviarDataSemana}
+                        />
                     </C.Col>
                     <C.Col lg="12">
                         <C.Label>Descrição da categoria</C.Label>
