@@ -31,8 +31,9 @@ export function PostagemProduto(){
     const EnviarDados = () => {
         const data = {
             fotoProduto: imagemProduto, nomeProduto: nomeProduto, 
-            descricaoProduto: descricaoProduto, categoriaId: categoriaId,
+            descricaoProduto: descricaoProduto, categoriaId: categoriaId
         }
+        console.log(data);
         api.post("/produto", data)
             .then(res => {
                 setTimeout(function(){
@@ -84,10 +85,12 @@ export function PostagemProduto(){
                         <C.Label>Selecione a categoria</C.Label>
                         <C.Input type="select" name="categoriaId" id="categoriaId"
                             onChange={EnviarCategoriaId}>
-                            <option disabled>Selecione uma categoria</option>
-                            {categorias.map((dados, index) => (
+                            <option value="">Selecione alguma categoria</option>
+                            {categorias.length > 0 ? categorias.map((dados, index) => (
                                 <option key={index} value={dados.idCategoria}>{dados.nomeCategoria}</option>
-                            ))}
+                            )):(
+                                <option value="">Não existe categorias adicionadas!</option>
+                            )}
                         </C.Input>
                     </C.Col>
                     <C.Col lg="12">

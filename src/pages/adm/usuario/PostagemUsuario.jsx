@@ -83,7 +83,7 @@ export function PostagemUsuario(){
                         />
                     </C.Col>
                     <C.Col lg="4">
-                        <C.Button color="primary" onClick={EnviarDados}>Postar produto</C.Button>
+                        <C.Button color="primary" onClick={EnviarDados}>Postar usuário</C.Button>
                     </C.Col>
                 </C.Row>
             </C.Form>

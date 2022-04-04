@@ -45,7 +45,7 @@ export function TableProduto(){
                         </thead>
 
                         <tbody>
-                            {produtos.map((dados, index) => (
+                            {produtos.length > 0 ? produtos.map((dados, index) => (
                                 <tr key={index} className="border-top">
                                     <td>00{index + 1}</td>
                                     <td>
@@ -71,7 +71,15 @@ export function TableProduto(){
                                         </Link>
                                     </td>
                                 </tr>
-                            ))}
+                                )):(
+                                <tr>
+                                    <td colSpan="5">
+                                        <C.Alert color="danger">
+                                            Não há dados para serem exibidos!
+                                        </C.Alert>
+                                    </td>
+                                </tr>
+                                )}
                         </tbody>
                     </C.Table>
                 </C.CardBody>

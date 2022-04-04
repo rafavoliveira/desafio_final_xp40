@@ -45,7 +45,7 @@ export function TableCategoria(){
                         </thead>
 
                         <tbody>
-                            {categorias.map((dados, index) => (
+                            {categorias.length > 0 ? categorias.map((dados, index) => (
                                 <tr key={index} className="border-top">
                                     <td>00{index + 1}</td>
                                     <td>
@@ -71,7 +71,15 @@ export function TableCategoria(){
                                         </Link>
                                     </td>
                                 </tr>
-                            ))}
+                                )): (
+                                <tr>
+                                    <td colSpan="5">
+                                        <C.Alert color="danger">
+                                            Não há dados para serem exibidos!
+                                        </C.Alert>
+                                    </td>
+                                </tr>
+                                )}
                         </tbody>
                     </C.Table>
                 </C.CardBody>
