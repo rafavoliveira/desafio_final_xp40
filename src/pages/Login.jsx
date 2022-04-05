@@ -23,8 +23,9 @@ function Login(){
             .then(res => {
                 localStorage.setItem("token", res.data);
                 setTimeout(function(){
-                    window.location.href = "/home";
+                    window.location.href = "/";
                 }, 1000)
+                setMensagem("Seja bem-vindo novamente");
             })
             .catch(error => {
                 setMensagem(error.response.data);
@@ -33,11 +34,12 @@ function Login(){
     }
 
     return(
-          <C.LoginPagina>
+          <C.LoginPagina className="text-center">
+              <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"} width="100"/>
               <C.RegistroFormulario>
                   {mensagem !== "" ? (
-                      <div className="alert alert-danger text-center">
-                          {mensagem} <i className="fa fa-warning"></i>
+                      <div className="alert alert-secondary text-center">
+                          {mensagem}!
                       </div>
                   ): ""}
                   <C.Formulario>

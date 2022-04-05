@@ -2,7 +2,7 @@ import { Button, Nav, NavItem } from "reactstrap";
 import { Link, useLocation } from "react-router-dom";
 
 const navigation = [
-    { titulo: "Home", href: "/home", icone: "fa fa-home" },
+    { titulo: "Home", href: "/", icone: "fa fa-home" },
     { titulo: "Categorias", href: "/categoria", icone: "fa fa-list-alt" },
     { titulo: "Produtos", href: "/produto", icone: "fa fa-product-hunt" },
     { titulo: "Usuários", href: "/usuario", icone: "fa fa-user" },
@@ -18,10 +18,6 @@ export const Sidebar = () => {
     return(
         <div className="bg-dark distanciamento">
             <div className="d-flex">
-                {/*<Button color="white" className="ms-auto text-white d-lg-none"
-                    onClick={() => showMobileMenu()}>
-                        <i className="fa fa-list"></i>
-                </Button>*/}
             </div>
 
             <div className="p-3 mt-2">

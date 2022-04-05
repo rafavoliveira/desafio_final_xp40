@@ -34,21 +34,9 @@ export const Navbar = () => {
                 <div className="d-lg-block d-none me-5 pe-3">
                     <img src="https://logos-download.com/wp-content/uploads/2016/09/React_logo_wordmark.png" width="130"/>
                 </div>
-
-                {/*<C.Button color="primary" className=" d-lg-none" 
-                    onClick={() => showMobileMenu()}>
-                        <i className="fa fa-list"></i>
-                    </C.Button>*/}
             </div>
 
             <div className="hstack gap-2">
-                <C.Button color="primary" size="sm" className="d-sm-block d-md-none">
-                    {isOpen ? (
-                        <i className="fa fa-list"></i>
-                    ): (
-                        <i className="fa fa-list"></i>
-                    )}
-                    </C.Button>
             </div>
 
             <C.Collapse navbar isOpen={isOpen}>
@@ -58,7 +46,7 @@ export const Navbar = () => {
                 <C.Dropdown isOpen={dropdownOpen} toggle={toggle}>
                     <C.DropdownToggle color="transparent">
                         <img 
-                            src="https://leadsdeconsorcio.com.br/blog/wp-content/uploads/2019/11/04-1.jpg"
+                            src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
                             alt="profile"
                             className="rounded-circle"
                             width="30"
