@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import * as C from "reactstrap";
 import api from "../../../services/api";
+import JoditEditor from "jodit-react";
 
 
 export function PostagemCategoria(){
+
+    const editor = useRef(null);
+
+    const config = {
+        readonly: false, height: 100,
+    }
     
     const [imagemCategoria, setImagemCategoria] = useState("");
     const [nomeCategoria, setNomeCategoria] = useState("");
@@ -25,6 +32,7 @@ export function PostagemCategoria(){
             fotoCategoria: imagemCategoria, 
             nomeCategoria: nomeCategoria, descricaoCategoria: descricaoCategoria,
         }
+        setDescricaoCategoria(localStorage.getItem("document"));
         api.post("/categoria", data)
             .then(res => {
                 setTimeout(function(){
@@ -67,9 +75,13 @@ export function PostagemCategoria(){
                     </C.Col>
                     <C.Col lg="12">
                         <C.Label>Descrição da categoria</C.Label>
-                        <C.Input type="textarea" id="descricaoCategoria"
-                            placeholder="Descreva o que será visualizado pelo cliente sobre a categoria" rows="4"
-                            onChange={EnviarDescricaoCategoria}
+                        <JoditEditor
+                            ref={editor}
+                            value={descricaoCategoria}
+                            config={config}
+                            tabIndex={1}
+                            onBlur={(newContent) => setDescricaoCategoria(newContent)}
+                            onChange={(newContent) => {}}
                         />
                     </C.Col>
                     <C.Col lg="4">

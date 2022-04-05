@@ -1,11 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import * as C from "reactstrap";
 import api from "../../../services/api";
 import { ProdutoSelecionado } from "../../../services/api-rotas/api-rotas-produto";
 import { VisualizarCategoria } from "../../../services/api-rotas/api-rotas-categoria";
+import JoditEditor from "jodit-react";
 
 export function AtualizarProduto(){
+
+    const editor = useRef(null);
+
+    const config = {
+        readonly: false, height: 100,
+    }
 
     const { id } = useParams();
 
@@ -72,6 +79,7 @@ export function AtualizarProduto(){
             diasSemanaProduto: diasSemanaProduto, dataSemanaProduto: dataSemanaProduto,
             categoriaId: categoriaProdutoId,
         }
+        setDescricaoProduto(localStorage.getItem("document"));
         try{
             const response = await api.put("/produto/"+id, data);
 
@@ -152,12 +160,14 @@ export function AtualizarProduto(){
                     </C.Col>
                         <C.Col lg="12">
                             <C.Label>Descrição do produto</C.Label>
-                            <C.Input type="textarea" name="descricaoProduto"
-                                id="descricaoProduto" 
-                                placeholder="Atualize a descrição do produto"
-                                rows="4" onChange={AtualizarDescricaoProduto}
-                                value={descricaoProduto}
-                            />
+                            <JoditEditor
+                            ref={editor}
+                            value={descricaoProduto}
+                            config={config}
+                            tabIndex={1}
+                            onBlur={(newContent) => setDescricaoProduto(newContent)}
+                            onChange={(newContent) => {}}
+                        />
                         </C.Col>
                         <C.Col lg="4">
                             <C.Button color="primary" onClick={EnviarDados}>

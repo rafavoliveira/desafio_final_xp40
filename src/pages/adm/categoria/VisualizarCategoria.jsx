@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import * as C from "reactstrap";
 import { CategoriaSelecionada } from "../../../services/api-rotas/api-rotas-categoria";
+import { Markup } from "interweave";
 
 export function VisualizarCategoria(){
 
@@ -30,7 +31,7 @@ export function VisualizarCategoria(){
                             <img src={dados.fotoCategoria} className="afastar" width="100%"/>
                         </C.Col>
                         <C.Col lg="6">
-                        <p>{dados.descricaoCategoria}</p>
+                        <Markup content={dados.descricaoCategoria}/>
                         </C.Col>
                     </C.Row>
                 </C.CardBody>

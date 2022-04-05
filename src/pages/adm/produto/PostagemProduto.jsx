@@ -1,13 +1,19 @@
 import * as C from "reactstrap";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { VisualizarCategoria } from "../../../services/api-rotas/api-rotas-categoria";
 import api from "../../../services/api";
+import JoditEditor from "jodit-react";
 
 
 export function PostagemProduto(){
 
-    const [categorias, setCategorias] = useState([]);
+    const editor = useRef(null);
 
+    const config = {
+        readonly: false, height: 100,
+    }
+
+    const [categorias, setCategorias] = useState([]);
     const [imagemProduto, setImagemProduto] = useState("");
     const [nomeProduto, setNomeProduto] = useState("");
     const [descricaoProduto, setDescricaoProduto] = useState("");
@@ -41,6 +47,7 @@ export function PostagemProduto(){
             categoriaId: categoriaId
         }
         console.log(data);
+        setDescricaoProduto(localStorage.getItem("document"));
         api.post("/produto", data)
             .then(res => {
                 setTimeout(function(){
@@ -123,8 +130,13 @@ export function PostagemProduto(){
                     </C.Col>
                     <C.Col lg="12">
                         <C.Label>Descrição do produto</C.Label>
-                        <C.Input type="textarea" name="descricaoProduto" id="descricaoProduto" placeholder="Descreva o que será visualizado pelo cliente sobre o produto" rows="4"
-                        onChange={EnviarDescricaoProduto}
+                        <JoditEditor
+                            ref={editor}
+                            value={descricaoProduto}
+                            config={config}
+                            tabIndex={1}
+                            onBlur={(newContent) => setDescricaoProduto(newContent)}
+                            onChange={(newContent) => {}}
                         />
                     </C.Col>
                     <C.Col lg="4">

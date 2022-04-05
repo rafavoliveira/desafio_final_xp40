@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ProdutoSelecionado } from "../../../services/api-rotas/api-rotas-produto";
 import * as C from "reactstrap";
+import { Markup } from "interweave";
 
 export function VisualizarProduto(){
 
@@ -45,12 +46,12 @@ export function VisualizarProduto(){
                         <C.Col lg="6">
                         <h2 className="afastar text-center">Produto: {dado.nomeProduto}</h2>
                             <img src={dado.fotoProduto} width="80%"/>
-                            <p>{dado.descricaoProduto}</p>
+                            <Markup content={dado.descricaoProduto}/>
                         </C.Col>
                         <C.Col lg="6">
                         <h2 className="afastar text-center">Categoria: {dado.categorium.nomeCategoria}</h2>
                             <img src={dado.categorium.fotoCategoria} width="80%"/>
-                            <p>{dado.categorium.descricaoCategoria}</p>
+                            <Markup content={dado.categorium.descricaoCategoria}/>
                         </C.Col>
                     </C.Row>
                 </C.CardBody>

@@ -1,10 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import * as C from "reactstrap";
 import api from "../../../services/api";
 import { CategoriaSelecionada } from "../../../services/api-rotas/api-rotas-categoria";
+import JoditEditor from "jodit-react";
 
 export function AtualizarCategoria(){
+
+    const editor = useRef(null);
+
+    const config = {
+        readonly: false, height: 100,
+    }
 
     const { id } = useParams();
 
@@ -87,12 +94,14 @@ export function AtualizarCategoria(){
                         </C.Col>
                         <C.Col lg="12">
                             <C.Label>Descrição da categoria</C.Label>
-                            <C.Input type="textarea" name="descricaoCategoria"
-                                id="descricaoCategoria" rows="4"
-                                placeholder="Atualize a descrição da categoria"
-                                value={descricaoCategoria}
-                                onChange={AtualizarDescricaoCategoria}
-                            />
+                            <JoditEditor
+                            ref={editor}
+                            value={descricaoCategoria}
+                            config={config}
+                            tabIndex={1}
+                            onBlur={(newContent) => setDescricaoCategoria(newContent)}
+                            onChange={(newContent) => {}}
+                        />
                         </C.Col>
                         <C.Col lg="4">
                             <C.Button color="primary" onClick={EnviarDados}>
