@@ -1,10 +1,10 @@
 const Sequelize = require("sequelize");
 
-const DB_NAME = "desafio_final";
-const DB_USER = "root";
-const DB_PASS = "12345678";
+const DB_NAME = process.env.DB_NAME;
+const DB_USER = process.env.DB_USER;
+const DB_PASS = process.env.DB_PASS;
 const DB_CONFIG = {
-  host: "localhost",
+  host: process.env.HOST,
   port: 3306,
   dialect: "mysql",
   define: {

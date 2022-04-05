@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -7,12 +8,12 @@ const handleError = require("./middlewares/handleError");
 
 app.use(express.json());
 app.use(cors({
-      origin: "http://localhost:3000",
+      origin: process.env.CORS,
 }))
 app.use(routers);
 db.hasConection();
 app.use(handleError);
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log("Servidor rodando");
 });

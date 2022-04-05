@@ -1,15 +1,18 @@
 const express = require("express");
 const router = express.Router();
+
 // Controllers
 const usuarioController = require("../controllers/usuarioController");
 const categoriaController = require("../controllers/categoriaController");
 const produtoController = require("../controllers/produtoController");
 const autenticacaoController = require("../controllers/autenticacaoController");
+
 //validação
 const permissao = require("../middlewares/permissoes");
 const validaCadastroUsuario = require("../validations/usuario/cadastroUsuario");
 const validaCadastroProduto = require("../validations/produto/cadastroProduto");
 const validaCadastroCategoria = require("../validations/categoria/cadastroCategoria");
+
 // Rotas - Categoria
 router.get("/categoria", categoriaController.listarCategoria);
 router.get("/categoria/:idCategoria", categoriaController.buscaCategoriaId);
