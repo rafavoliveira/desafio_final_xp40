@@ -21,6 +21,8 @@ import { AtualizarUsuario } from "./pages/adm/usuario/AtualizarUsuario";
 import { AtualizarCategoria } from "./pages/adm/categoria/AtualizarCategoria";
 import { AtualizarProduto } from "./pages/adm/produto/AtualizarProduto";
 
+import { NotFound } from "./pages/not-found";
+
 import RotaPrivada from "./services/autenticacao";
 import RotaPrivadaLogin from "./services/protecao-login";
 
@@ -29,11 +31,12 @@ function Rotas() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="*" element={<NotFound/>}/>
           <Route path="/login" 
             element={<RotaPrivadaLogin><Login/></RotaPrivadaLogin>}
           />
           <Route path="/" element={<Header/>}>
-              <Route path="/home" 
+              <Route path="/" 
                   element={<RotaPrivada><Home/></RotaPrivada>}
               />
               <Route path="/usuario" 
