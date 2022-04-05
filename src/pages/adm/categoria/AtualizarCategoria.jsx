@@ -47,7 +47,6 @@ export function AtualizarCategoria(){
             fotoCategoria: fotoCategoria, nomeCategoria: nomeCategoria, 
             descricaoCategoria: descricaoCategoria,
         }
-        console.log(data);
         try{
             const response = await api.put("/categoria/"+id, data);
 

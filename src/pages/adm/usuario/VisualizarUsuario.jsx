@@ -16,8 +16,6 @@ export function VisualizarUsuario(){
         getUsuarioSelecionado()
     },[])
 
-    console.log(usuario);
-
     return(
         <C.Row>
             {usuario.map((dados, index) => (

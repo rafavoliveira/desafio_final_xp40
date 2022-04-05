@@ -17,8 +17,6 @@ export function VisualizarProduto(){
         getProdutoSelecionado()
     },[])
 
-    console.log(produto);
-
     return(
         <C.Row>
             {produto.map((dado, index) => (

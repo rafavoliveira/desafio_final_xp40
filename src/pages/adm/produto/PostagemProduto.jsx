@@ -46,7 +46,6 @@ export function PostagemProduto(){
             diasSemanaProduto: diasSemanaProduto, dataSemanaProduto: dataSemanaProduto,
             categoriaId: categoriaId
         }
-        console.log(data);
         setDescricaoProduto(localStorage.getItem("document"));
         api.post("/produto", data)
             .then(res => {

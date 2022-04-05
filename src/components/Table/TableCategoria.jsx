@@ -11,7 +11,6 @@ export function TableCategoria(){
 
     const getVisualizarCategorias = async () => {
         const response = await VisualizarCategoria();
-        console.log(response);
 
         setCategorias(response);
     }
