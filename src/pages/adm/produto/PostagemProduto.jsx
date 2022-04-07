@@ -21,6 +21,7 @@ export function PostagemProduto(){
     const [cargaHorariaProduto, setCargaHoraria] = useState("");
     const [diasSemanaProduto, setDiaSemana] = useState("");
     const [dataSemanaProduto, setDataSemana] = useState("");
+    const [investimentoProduto, setInvestimentoProduto] = useState("");
     const [mensagem, setMensagem] = useState("");
 
     const EnviarImagemProduto = (event) => {
@@ -38,13 +39,14 @@ export function PostagemProduto(){
     const EnviarCargaHoraria = (event) => {setCargaHoraria(event.target.value)}
     const EnviarDiasSemana = (event) => {setDiaSemana(event.target.value)}
     const EnviarDataSemana = (event) => {setDataSemana(event.target.value)}
+    const EnviarInvestimentoProduto = (event) => {setInvestimentoProduto(event.target.value)}
 
     const EnviarDados = () => {
         const data = {
             fotoProduto: imagemProduto, nomeProduto: nomeProduto, 
             descricaoProduto: descricaoProduto, cargaHorariaProduto: cargaHorariaProduto,
             diasSemanaProduto: diasSemanaProduto, dataSemanaProduto: dataSemanaProduto,
-            categoriaId: categoriaId
+            investimentoProduto: investimentoProduto, categoriaId: categoriaId
         }
         setDescricaoProduto(localStorage.getItem("document"));
         api.post("/produto", data)
@@ -106,25 +108,32 @@ export function PostagemProduto(){
                             )}
                         </C.Input>
                     </C.Col>
-                    <C.Col lg="4">
+                    <C.Col lg="3">
                         <C.Label>Carga horário do produto</C.Label>
                         <C.Input type="number" name="cargaHorariaProduto" id="cargaHorariaProduto"
                             placeholder="Digite a carga horário do produto"
                             onChange={EnviarCargaHoraria}
                         />
                     </C.Col>
-                    <C.Col lg="4">
+                    <C.Col lg="3">
                         <C.Label>Dias da semana do produto</C.Label>
                         <C.Input type="text" name="diasSemanaProduto" id="diasSemanaProduto"
                             placeholder="Digite os dias da semana do produto"
                             onChange={EnviarDiasSemana}
                         />
                     </C.Col>
-                    <C.Col lg="4">
+                    <C.Col lg="3">
                         <C.Label>Datas da semana do produto</C.Label>
                         <C.Input type="txt" name="dataSemanaProduto" id="dataSemanaProduto"
                             placeholder="Digite as data da semana do produto"
                             onChange={EnviarDataSemana}
+                        />
+                    </C.Col>
+                    <C.Col lg="3">
+                        <C.Label>Investimento do produto</C.Label>
+                        <C.Input type="number" name="investimentoProduto" id="investimentoProduto"
+                            placeholder="Digite o investimento do produto"
+                            onChange={EnviarInvestimentoProduto}
                         />
                     </C.Col>
                     <C.Col lg="12">

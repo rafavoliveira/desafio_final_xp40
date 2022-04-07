@@ -41,6 +41,11 @@ export function VisualizarProduto(){
                                 Data das semanas: {dado.dataSemanaProduto}
                             </C.Alert>
                         </C.Col>
+                        <C.Col lg="12 text-center">
+                            <C.Alert color="secondary">
+                                Investimento: {dado.investimentoProduto}
+                            </C.Alert>
+                        </C.Col>
                         <C.Col lg="6">
                         <h2 className="afastar text-center">Produto: {dado.nomeProduto}</h2>
                             <img src={dado.fotoProduto} width="80%"/>

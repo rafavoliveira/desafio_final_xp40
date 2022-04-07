@@ -26,6 +26,7 @@ export function AtualizarProduto(){
     const [cargaHorariaProduto, setCargaHoraria] = useState("");
     const [diasSemanaProduto, setDiaSemana] = useState("");
     const [dataSemanaProduto, setDataSemana] = useState("");
+    const [investimentoProduto, setInvestimentoProduto] = useState("");
     const [categoriaProdutoId, setCategoriaProdutoId] = useState("");
     const [mensagem, setMensagem] = useState("");
 
@@ -40,6 +41,7 @@ export function AtualizarProduto(){
         setCargaHoraria(response[0].cargaHorariaProduto);
         setDiaSemana(response[0].diasSemanaProduto);
         setDataSemana(response[0].dataSemanaProduto);
+        setInvestimentoProduto(response[0].investimentoProduto);
 
         setProduto(response);
     }
@@ -71,12 +73,13 @@ export function AtualizarProduto(){
     const AtualizarCargaHoraria = (event) => {setCargaHoraria(event.target.value)}
     const AtualizarDiaSemana = (event) => {setDiaSemana(event.target.value)}
     const AtualizarDataSemana = (event) => {setDataSemana(event.target.value)}
+    const AtualizarInvestimento = (event) => {setInvestimentoProduto(event.target.value)}
 
     const EnviarDados = async () =>{
         const data = {
             fotoProduto: fotoProduto, nomeProduto: nomeProduto,
             descricaoProduto: descricaoProduto, cargaHorariaProduto: cargaHorariaProduto,
-            diasSemanaProduto: diasSemanaProduto, dataSemanaProduto: dataSemanaProduto,
+            diasSemanaProduto: diasSemanaProduto, dataSemanaProduto: dataSemanaProduto, investimentoProduto: investimentoProduto,
             categoriaId: categoriaProdutoId,
         }
         setDescricaoProduto(localStorage.getItem("document"));
@@ -134,7 +137,7 @@ export function AtualizarProduto(){
                                 ))}
                             </C.Input>
                         </C.Col>
-                        <C.Col lg="4">
+                        <C.Col lg="3">
                         <C.Label>Carga horário do produto</C.Label>
                         <C.Input type="number" name="cargaHorariaProduto" id="cargaHorariaProduto"
                             placeholder="Atualize a carga horário do produto"
@@ -142,7 +145,7 @@ export function AtualizarProduto(){
                             onChange={AtualizarCargaHoraria}
                         />
                     </C.Col>
-                    <C.Col lg="4">
+                    <C.Col lg="3">
                         <C.Label>Dias da semana do produto</C.Label>
                         <C.Input type="text" name="diasSemanaProduto" id="diasSemanaProduto"
                             placeholder="Atualize os dias da semana do produto"
@@ -150,12 +153,20 @@ export function AtualizarProduto(){
                             onChange={AtualizarDiaSemana}
                         />
                     </C.Col>
-                    <C.Col lg="4">
+                    <C.Col lg="3">
                         <C.Label>Datas da semana do produto</C.Label>
                         <C.Input type="text" name="dataSemanaProduto" id="dataSemanaProduto"
                             placeholder="Atualize as data da semana do produto"
                             value={dataSemanaProduto}
                             onChange={AtualizarDataSemana}
+                        />
+                    </C.Col>
+                    <C.Col lg="3">
+                        <C.Label>Investimento do produto</C.Label>
+                        <C.Input type="number" name="investimentoProduto" id="investimentoProduto"
+                            placeholder="Atualize o investimento do produto"
+                            value={investimentoProduto}
+                            onChange={AtualizarInvestimento}
                         />
                     </C.Col>
                         <C.Col lg="12">
