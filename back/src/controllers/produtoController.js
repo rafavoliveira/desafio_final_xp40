@@ -36,10 +36,10 @@ const produtoController = {
 
     async cadastrarProduto(req, res) {
       try{
-          const { fotoProduto, nomeProduto, descricaoProduto, cargaHorariaProduto, diasSemanaProduto, dataSemanaProduto, categoriaId } = req.body;
+          const { fotoProduto, nomeProduto, descricaoProduto, cargaHorariaProduto, diasSemanaProduto, dataSemanaProduto, investimento_produto, categoriaId } = req.body;
 
           const novoProduto = await produtoModel.create({
-            fotoProduto, nomeProduto, descricaoProduto, cargaHorariaProduto, diasSemanaProduto, dataSemanaProduto, categoriaId,
+            fotoProduto, nomeProduto, descricaoProduto, cargaHorariaProduto, diasSemanaProduto, dataSemanaProduto, investimento_produto, categoriaId,
           });
 
           res.status(201).json(novoProduto);
@@ -70,7 +70,7 @@ const produtoController = {
         try {
             const { idProduto } = req.params;
             const { fotoProduto, nomeProduto, descricaoProduto,
-                cargaHorariaProduto, diasSemanaProduto, dataSemanaProduto, categoriaId } = req.body;
+                cargaHorariaProduto, diasSemanaProduto, dataSemanaProduto, investimento_produto, categoriaId } = req.body;
 
             const validaProduto = await produtoModel.findByPk(idProduto);
 
@@ -79,7 +79,7 @@ const produtoController = {
             }
 
             produtoModel.update({
-                fotoProduto, nomeProduto, descricaoProduto, cargaHorariaProduto, diasSemanaProduto, dataSemanaProduto, categoriaId,
+                fotoProduto, nomeProduto, descricaoProduto, cargaHorariaProduto, diasSemanaProduto, dataSemanaProduto, investimento_produto, categoriaId,
             },{
                 where:{
                     idProduto,

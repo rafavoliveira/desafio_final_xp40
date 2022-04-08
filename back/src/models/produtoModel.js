@@ -33,6 +33,10 @@ const produto = db.define("produto",{
         type: DataTypes.STRING,
         field: "data_semana_produto"
     },
+    investimentoProduto:{
+        type: DataTypes.DOUBLE,
+        field: "investimento_produto"
+    },
     categoriaId:{
         type: DataTypes.INTEGER,
         field: "categoria_id",

@@ -8,6 +8,7 @@ module.exports = validate({
     cargaHorariaProduto: Joi.number().required(),
     diasSemanaProduto: Joi.string().required(),
     dataSemanaProduto: Joi.string().required(),
+    investimentoProduto: Joi.number().required(),
     categoriaId: Joi.number().required(),
   }),
 });
